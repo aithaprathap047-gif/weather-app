@@ -7,177 +7,316 @@
 
 body {
   min-height: 100vh;
+  padding: 30px 16px;
   font-family: Arial, sans-serif;
   color: white;
   background:
-    linear-gradient(135deg, #071b49bb, #162c65aa),
+    linear-gradient(#071a4590, #06193680),
     url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  padding: 30px 16px;
 }
 
-header, .header {
-  text-align: center;
-  margin-bottom: 28px;
-}
-
-h1 {
-  font-size: clamp(30px, 5vw, 48px);
-  margin-bottom: 12px;
-}
-
-p {
-  line-height: 1.6;
-}
-
-main, .container {
+.app {
   width: 100%;
   max-width: 850px;
   margin: auto;
 }
 
-form {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  margin-bottom: 25px;
-  border-radius: 50px;
-  background: #061638dd;
-  border: 2px solid #568bff;
-  box-shadow: 0 0 20px #3984ff66;
+header {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-input {
+header h1 {
+  font-size: clamp(32px, 6vw, 48px);
+  margin-bottom: 12px;
+}
+
+header h1 span {
+  color: #65a5ff;
+}
+
+header p {
+  color: #e2ecff;
+  font-size: 17px;
+}
+
+#search-form {
+  display: flex;
+  gap: 10px;
+  padding: 9px;
+  margin-bottom: 22px;
+  border: 2px solid #659aff;
+  border-radius: 50px;
+  background: #061638e8;
+  box-shadow: 0 0 22px #3184ff55;
+}
+
+#city-input {
   flex: 1;
   min-width: 0;
   padding: 14px 18px;
   border: none;
   outline: none;
-  background: transparent;
   color: white;
+  background: transparent;
   font-size: 16px;
 }
 
-input::placeholder {
-  color: #c7d8ff;
+#city-input::placeholder {
+  color: #c5d7ff;
 }
 
-button {
+#search-button {
   padding: 14px 25px;
   border: none;
   border-radius: 35px;
-  background: linear-gradient(135deg, #35c7ff, #075bff);
+  background: linear-gradient(135deg, #39c8ff, #075bff);
   color: white;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
+#search-button:hover {
   filter: brightness(1.15);
 }
 
-.weather-card, .card, #weather-result {
-  padding: 28px;
-  margin-bottom: 22px;
-  border: 1px solid #8abaff88;
-  border-radius: 24px;
-  background: #061b46a8;
-  box-shadow: 0 12px 35px #00102b66;
-  backdrop-filter: blur(15px);
+#status {
+  text-align: center;
+  margin: 14px 0;
+  color: #ffffff;
 }
 
-.temperature {
-  font-size: clamp(48px, 9vw, 76px);
+.hidden {
+  display: none !important;
+}
+
+.card,
+.current {
+  border: 1px solid #83b5ff80;
+  border-radius: 22px;
+  background: #082657b8;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 35px #00102b55;
+}
+
+.current {
+  padding: 26px;
+}
+
+.place {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.place h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.place p {
+  color: #d6e5ff;
+}
+
+#date {
+  text-align: right;
+  font-size: 14px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 20px 0 28px;
+}
+
+#icon {
+  font-size: 88px;
+}
+
+#temperature {
+  font-size: clamp(48px, 9vw, 72px);
+  line-height: 1.1;
+}
+
+#description {
+  font-size: 19px;
   font-weight: bold;
+  margin: 8px 0;
 }
 
-.weather-details, .details {
+.hero p {
+  color: #e0eaff;
+}
+
+.details {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  margin-top: 25px;
+  margin-bottom: 30px;
 }
 
-.weather-details > div, .details > div {
+.detail {
   padding: 18px 10px;
   text-align: center;
-  border: 1px solid #73aaff66;
-  border-radius: 18px;
-  background: #193b70aa;
+  background: #15386cba;
+  border-radius: 17px;
+}
+
+.detail span {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.detail p {
+  color: #cbdcff;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.detail h3 {
+  font-size: 22px;
+}
+
+.forecast-title {
+  font-size: 23px;
+  margin-bottom: 16px;
 }
 
 .forecast {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 18px;
 }
 
-.forecast > div, .forecast-card {
-  padding: 15px 6px;
+.forecast > div {
+  padding: 15px 5px;
   text-align: center;
-  border: 1px solid #6ea6ff66;
-  border-radius: 16px;
-  background: #082653cc;
+  border: 1px solid #77aaff80;
+  border-radius: 15px;
+  background: #082451dc;
+  overflow-wrap: anywhere;
 }
 
 .forecast p {
-  font-size: 14px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.forecast span {
+  font-size: 28px;
 }
 
 footer {
+  margin: 24px 0 8px;
   text-align: center;
-  margin: 24px 0;
-  color: #d8e8ff;
+  color: #dce8ff;
+  font-size: 14px;
+}
+
+footer a {
+  color: #42caff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
   body {
-    padding: 22px 12px;
+    padding: 22px 10px;
     background-attachment: scroll;
   }
 
-  form {
-    gap: 2px;
+  header h1 {
+    font-size: 32px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  #search-form {
+    gap: 3px;
     padding: 6px;
   }
 
-  input {
-    padding: 12px 8px;
+  #city-input {
+    padding: 12px 7px;
     font-size: 14px;
   }
 
-  button {
-    padding: 12px 15px;
-    font-size: 14px;
-  }
-
-  .weather-card, .card, #weather-result {
-    padding: 18px 12px;
-  }
-
-  .weather-details, .details {
-    gap: 7px;
-  }
-
-  .weather-details > div, .details > div {
-    padding: 13px 4px;
+  #search-button {
+    padding: 12px;
     font-size: 13px;
+  }
+
+  .current {
+    padding: 16px 11px;
+  }
+
+  .place h2 {
+    font-size: 21px;
+  }
+
+  #date {
+    font-size: 11px;
+  }
+
+  .hero {
+    gap: 12px;
+  }
+
+  #icon {
+    font-size: 62px;
+  }
+
+  #temperature {
+    font-size: 48px;
+  }
+
+  #description {
+    font-size: 16px;
+  }
+
+  .details {
+    gap: 6px;
+  }
+
+  .detail {
+    padding: 12px 3px;
+  }
+
+  .detail span {
+    font-size: 23px;
+  }
+
+  .detail p {
+    font-size: 11px;
+  }
+
+  .detail h3 {
+    font-size: 16px;
   }
 
   .forecast {
     gap: 5px;
   }
 
-  .forecast > div, .forecast-card {
-    padding: 12px 3px;
-    overflow-wrap: anywhere;
+  .forecast > div {
+    padding: 10px 2px;
   }
 
   .forecast p {
-    font-size: 11px;
+    font-size: 10px;
+  }
+
+  .forecast span {
+    font-size: 22px;
   }
 }
