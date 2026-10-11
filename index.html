@@ -2,31 +2,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weather App</title>
-<link rel="stylesheet" href="Styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-<div class="app">
-  <h1>🌤️ Weather App</h1>
-  <p>Know your weather, plan your day.</p>
-  <form id="form">
-    <input id="city" placeholder="Enter city name" required>
-    <button>Search</button>
-  </form>
-  <div class="card">
-    <h2 id="name">Your City</h2>
-    <div id="icon">🌤️</div>
-    <h1><span id="temp">--</span>°C</h1>
-    <h3 id="desc">Search a city</h3>
-    <div class="details">
-      <div>💧 Humidity <b id="humidity">--%</b></div>
-      <div>💨 Wind <b id="wind">-- km/h</b></div>
+  <div class="app">
+    <h1>🌤️ Weather App</h1>
+    <p>Know your weather, plan your day.</p>
+
+    <form id="form">
+      <input id="city" type="text" placeholder="Enter city name" required>
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="card">
+      <h2 id="name">Your City</h2>
+      <div id="icon">🌤️</div>
+      <h1><span id="temp">--</span>°C</h1>
+      <h3 id="desc">Search a city</h3>
+
+      <div class="details">
+        <div>💧 Humidity <b id="humidity">--%</b></div>
+        <div>💨 Wind <b id="wind">-- km/h</b></div>
+      </div>
     </div>
+
+    <p id="status"></p>
   </div>
-  <p id="status"></p>
-</div>
-<script src="Script.js"></script>
+
+  <script src="Script.js"></script>
 </body>
 </html>
