@@ -2,87 +2,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="Styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App | Live Weather</title>
+  <link rel="stylesheet" href="Styles.css">
+  <script src="Script.js" defer></script>
 </head>
 <body>
-    <main class="app">
-        <header class="header">
-            <div>
-                <h1>Weather App</h1>
-                <p>Know your weather, plan your day.</p>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Weather App home">
+        <span class="brand-icon">🌤️</span>
+        <span>
+          <h1>Weather App</h1>
+          <p>Know your weather, plan your day.</p>
+        </span>
+      </a>
+      <form id="searchForm" class="search-form">
+        <span>⌕</span>
+        <input id="cityInput" type="text" placeholder="Search a city..." aria-label="City name" required>
+        <button type="submit">Search</button>
+      </form>
+    </header>
+
+    <p id="status" class="status" role="status">Search for a city to see its weather.</p>
+
+    <main class="dashboard">
+      <section class="main-column">
+        <article class="hero glass">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="location">📍 <span id="cityName">Your City</span></p>
+            <p class="date" id="todayDate">Live weather forecast</p>
+            <div class="current-weather">
+              <span class="big-icon" id="weatherIcon">🌤️</span>
+              <div>
+                <div class="temperature"><span id="temperature">--</span><sup>°C</sup></div>
+                <p class="condition" id="condition">Search a city</p>
+              </div>
             </div>
-            <span class="logo">🌤️</span>
-        </header>
-
-        <form id="searchForm" class="search-form">
-            <input
-                type="text"
-                id="cityInput"
-                placeholder="Enter city name..."
-                aria-label="City name"
-                required
-            >
-            <button type="submit">Search</button>
-        </form>
-
-        <p id="message" role="status" aria-live="polite">
-            Search for a city to see its weather.
-        </p>
-
-        <section id="weatherPanel" hidden>
-            <div class="current-card">
-                <div class="current-top">
-                    <div>
-                        <p id="todayLabel">Current Weather</p>
-                        <h2 id="cityName">City</h2>
-                        <p id="weatherDescription">Weather condition</p>
-                    </div>
-                    <div id="weatherIcon" class="weather-icon">🌤️</div>
-                </div>
-
-                <div class="temperature">
-                    <span id="temperature">--</span><span>°C</span>
-                </div>
-
-                <p class="feels">
-                    Feels like <strong id="feelsLike">--</strong>°C
-                </p>
-
-                <div class="details">
-                    <div class="detail">
-                        <span>💧 Humidity</span>
-                        <strong id="humidity">--%</strong>
-                    </div>
-                    <div class="detail">
-                        <span>💨 Wind Speed</span>
-                        <strong id="wind">-- km/h</strong>
-                    </div>
-                    <div class="detail">
-                        <span>🌡️ Min / Max</span>
-                        <strong id="minMax">-- / --°C</strong>
-                    </div>
-                </div>
+            <div class="weather-details">
+              <div class="detail">
+                <span class="detail-icon">💧</span>
+                <div><small>Humidity</small><strong id="humidity">--%</strong></div>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">💨</span>
+                <div><small>Wind speed</small><strong id="wind">-- km/h</strong></div>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">🌡️</span>
+                <div><small>Feels like</small><strong id="feelsLike">--°C</strong></div>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">↕️</span>
+                <div><small>Min / Max</small><strong id="minMax">--° / --°</strong></div>
+              </div>
             </div>
+          </div>
+        </article>
 
-            <section class="forecast-section">
-                <h2>5-Day Forecast</h2>
-                <div id="forecast" class="forecast-grid"></div>
-            </section>
+        <section class="forecast glass">
+          <div class="section-heading">
+            <h2>▦ &nbsp; 5-Day Forecast</h2>
+            <span class="forecast-label">Coming days</span>
+          </div>
+          <div id="forecastList" class="forecast-list">
+            <div class="empty-forecast">Your forecast will appear here.</div>
+          </div>
+        </section>
+      </section>
 
-            <section class="recent-section">
-                <h2>Recent Searches</h2>
-                <div id="recentCities" class="recent-cities"></div>
-            </section>
+      <aside class="side-column">
+        <section class="recent glass">
+          <div class="section-heading">
+            <h2>◷ &nbsp; Recent Searches</h2>
+            <button id="clearHistory" class="text-button" type="button">Clear all</button>
+          </div>
+          <div id="recentList" class="recent-list">
+            <p class="muted">Your searched cities appear here.</p>
+          </div>
         </section>
 
-        <footer>
-            <p>Weather information powered by Open-Meteo</p>
-        </footer>
+        <section class="mood-card glass">
+          <div class="mood-art" aria-hidden="true">
+            <span>☁️</span><span>🌙</span><span>☀️</span>
+          </div>
+          <h2>Good Weather,<br>Brighter Mood</h2>
+          <p>Check the weather and make the most of your day!</p>
+          <div class="mood-bottom">✨ &nbsp; A little forecast, a better day.</div>
+        </section>
+      </aside>
     </main>
 
-    <script src="Script.js"></script>
+    <footer>
+      <span>〈/〉 Weather data powered by Open-Meteo</span>
+      <span>💜 Stay safe · Stay informed</span>
+    </footer>
+  </div>
 </body>
 </html>
