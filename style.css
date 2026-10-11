@@ -4,18 +4,21 @@
   padding: 0;
 }
 
+
 body {
   font-family: Arial, sans-serif;
   color: #fff;
   min-height: 100vh;
   background:
-    linear-gradient(120deg, rgba(10, 30, 75, .35),
-    rgba(10, 20, 55, .2)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85")
-    center / cover fixed;
+    linear-gradient(
+      120deg,
+      rgba(10, 30, 75, .18),
+      rgba(10, 20, 55, .12)
+    ),
+    url("https://images.unsplash.com/photo-1758255847444-2506073ca32e?auto=format&fit=crop&w=1600&q=85")
+    center center / cover fixed;
   padding: 25px 14px;
 }
-
 .app {
   width: 100%;
   max-width: 810px;
