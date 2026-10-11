@@ -3,25 +3,7 @@
 <html>
 <head>
   <title>Weather App</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #dff3ff;
-      padding: 40px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      max-width: 350px;
-      margin: auto;
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
   <div class="card">
@@ -30,49 +12,7 @@
     <button onclick="getWeather()">Search</button>
     <div id="result">Enter a city to check weather</div>
   </div>
-
-  <script>
-    async function getWeather() {
-      const city = document.getElementById("city").value.trim();
-      const result = document.getElementById("result");
-
-      if (!city) {
-        result.innerText = "Please enter a city";
-        return;
-      }
-
-      result.innerText = "Loading...";
-
-      try {
-        const url = "https://geocoding-api.open-meteo.com/v1/search?name="
-          + encodeURIComponent(city) + "&count=1&language=en&format=json";
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (!data.results) {
-          result.innerText = "City not found";
-          return;
-        }
-
-        const place = data.results[0];
-        const weatherURL =
-          `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
-
-        const weatherResponse = await fetch(weatherURL);
-        const weather = await weatherResponse.json();
-        const current = weather.current;
-
-        result.innerHTML = `
-          <h2>${place.name}</h2>
-          <p>🌡️ Temperature: ${current.temperature_2m}°C</p>
-          <p>💧 Humidity: ${current.relative_humidity_2m}%</p>
-          <p>💨 Wind: ${current.wind_speed_10m} km/h</p>
-        `;
-      } catch (error) {
-        result.innerText = "Unable to get weather. Try again.";
-      }
-    }
-  </script>
+<script src="Script.js"></script>
+  
 </body>
 </html>
