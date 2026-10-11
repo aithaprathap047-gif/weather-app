@@ -4,34 +4,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-  <link rel="stylesheet" href="Styles.css">
+  <title>WeatherNow | Live Weather</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="app">
-    <h1>🌤️ Weather App</h1>
-    <p>Know your weather, plan your day.</p>
+  <main class="app">
+    <header>
+      <h1>🌤️ Weather<span>Now</span></h1>
+      <p>Discover the weather, plan your day 💙</p>
+    </header>
 
-    <form id="form">
-      <input id="city" type="text" placeholder="Enter city name" required>
-      <button type="submit">Search</button>
+    <form id="search-form">
+      <input id="city-input" type="search"
+        placeholder="🔍 Enter city name..." required>
+      <button id="search-button" type="submit">🔍 Search</button>
     </form>
 
-    <div class="card">
-      <h2 id="name">Your City</h2>
-      <div id="icon">🌤️</div>
-      <h1><span id="temp">--</span>°C</h1>
-      <h3 id="desc">Search a city</h3>
+    <p id="status" role="status">Loading weather...</p>
 
-      <div class="details">
-        <div>💧 Humidity <b id="humidity">--%</b></div>
-        <div>💨 Wind <b id="wind">-- km/h</b></div>
+    <section id="weather" class="hidden">
+      <div class="current card">
+        <div class="place">
+          <div>
+            <h2 id="city-name">Hyderabad</h2>
+            <p id="country">India</p>
+          </div>
+          <p id="date"></p>
+        </div>
+
+        <div class="hero">
+          <span id="icon">🌤️</span>
+          <div>
+            <h2 id="temperature">--°C</h2>
+            <p id="description">Loading...</p>
+            <p>Feels like <span id="feels">--</span>°C</p>
+          </div>
+        </div>
+
+        <div class="details">
+          <div class="detail card">
+            <span>💧</span>
+            <p>Humidity</p>
+            <h3 id="humidity">--%</h3>
+          </div>
+          <div class="detail card">
+            <span>🌬️</span>
+            <p>Wind Speed</p>
+            <h3 id="wind">-- km/h</h3>
+          </div>
+          <div class="detail card">
+            <span>🌡️</span>
+            <p>Feels Like</p>
+            <h3 id="feels2">--°C</h3>
+          </div>
+        </div>
+
+        <h2 class="forecast-title">5-Day Forecast 🌦️</h2>
+        <div id="forecast" class="forecast"></div>
       </div>
-    </div>
+    </section>
 
-    <p id="status"></p>
-  </div>
-
-  <script src="Script.js"></script>
+    <footer>♡ Powered by
+      <a href="https://open-meteo.com/">Open-Meteo</a>
+    </footer>
+  </main>
 </body>
 </html>
