@@ -1,132 +1,115 @@
-
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  padding: 30px 16px;
   font-family: Arial, sans-serif;
-  color: white;
+  color: #fff;
+  min-height: 100vh;
   background:
-    linear-gradient(#071a4590, #06193680),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+    linear-gradient(120deg, rgba(10, 30, 75, .35),
+    rgba(10, 20, 55, .2)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85")
+    center / cover fixed;
+  padding: 25px 14px;
 }
 
 .app {
   width: 100%;
-  max-width: 850px;
+  max-width: 810px;
   margin: auto;
 }
 
 header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 }
 
 header h1 {
-  font-size: clamp(32px, 6vw, 48px);
+  font-size: clamp(28px, 5vw, 44px);
   margin-bottom: 12px;
 }
 
-header h1 span {
-  color: #65a5ff;
-}
-
 header p {
-  color: #e2ecff;
   font-size: 17px;
+  color: #dbe7ff;
 }
 
 #search-form {
   display: flex;
+  align-items: center;
   gap: 10px;
-  padding: 9px;
-  margin-bottom: 22px;
-  border: 2px solid #659aff;
+  padding: 8px;
+  margin-bottom: 25px;
+  border: 2px solid #668eff;
   border-radius: 50px;
-  background: #061638e8;
-  box-shadow: 0 0 22px #3184ff55;
+  background: rgba(8, 24, 62, .88);
 }
 
 #city-input {
   flex: 1;
   min-width: 0;
-  padding: 14px 18px;
-  border: none;
-  outline: none;
+  padding: 13px 16px;
   color: white;
   background: transparent;
+  border: none;
+  outline: none;
   font-size: 16px;
 }
 
 #city-input::placeholder {
-  color: #c5d7ff;
+  color: #b9c9eb;
 }
 
 #search-button {
-  padding: 14px 25px;
-  border: none;
-  border-radius: 35px;
-  background: linear-gradient(135deg, #39c8ff, #075bff);
+  padding: 14px 24px;
   color: white;
   font-size: 16px;
   font-weight: bold;
+  border: none;
+  border-radius: 35px;
+  background: linear-gradient(120deg, #65a4ff, #1765f5);
   cursor: pointer;
 }
 
 #search-button:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.12);
 }
 
 #status {
   text-align: center;
-  margin: 14px 0;
-  color: #ffffff;
+  margin: 12px 0;
+  color: #d9e8ff;
 }
 
 .hidden {
   display: none !important;
 }
 
-.card,
-.current {
-  border: 1px solid #83b5ff80;
+.current,
+.card {
+  background: rgba(12, 37, 79, .78);
+  border: 1px solid rgba(151, 190, 255, .48);
   border-radius: 22px;
-  background: #082657b8;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 12px 35px #00102b55;
+  backdrop-filter: blur(14px);
 }
 
 .current {
-  padding: 26px;
+  padding: 25px;
 }
 
 .place {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
 .place h2 {
-  font-size: 28px;
-  margin-bottom: 5px;
-}
-
-.place p {
-  color: #d6e5ff;
-}
-
-#date {
-  text-align: right;
-  font-size: 14px;
+  font-size: 26px;
 }
 
 .hero {
@@ -137,57 +120,33 @@ header p {
 }
 
 #icon {
-  font-size: 88px;
+  font-size: 76px;
 }
 
 #temperature {
-  font-size: clamp(48px, 9vw, 72px);
-  line-height: 1.1;
-}
-
-#description {
-  font-size: 19px;
+  font-size: clamp(42px, 8vw, 70px);
   font-weight: bold;
-  margin: 8px 0;
-}
-
-.hero p {
-  color: #e0eaff;
 }
 
 .details {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 25px 0 30px;
 }
 
 .detail {
-  padding: 18px 10px;
   text-align: center;
-  background: #15386cba;
-  border-radius: 17px;
-}
-
-.detail span {
-  display: block;
-  font-size: 30px;
-  margin-bottom: 8px;
+  padding: 20px 8px;
 }
 
 .detail p {
-  color: #cbdcff;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.detail h3 {
-  font-size: 22px;
+  margin: 8px 0;
 }
 
 .forecast-title {
-  font-size: 23px;
-  margin-bottom: 16px;
+  margin: 25px 0 18px;
+  font-size: 25px;
 }
 
 .forecast {
@@ -196,76 +155,33 @@ header p {
   gap: 10px;
 }
 
-.forecast > div {
-  padding: 15px 5px;
+.forecast .card {
   text-align: center;
-  border: 1px solid #77aaff80;
-  border-radius: 15px;
-  background: #082451dc;
-  overflow-wrap: anywhere;
-}
-
-.forecast p {
-  margin: 8px 0;
-  font-size: 13px;
-}
-
-.forecast span {
-  font-size: 28px;
+  padding: 18px 5px;
 }
 
 footer {
-  margin: 24px 0 8px;
   text-align: center;
+  margin: 25px 0;
   color: #dce8ff;
-  font-size: 14px;
 }
 
 footer a {
-  color: #42caff;
-  text-decoration: none;
-  font-weight: bold;
+  color: #46c5ff;
 }
 
 @media (max-width: 600px) {
   body {
-    padding: 22px 10px;
+    padding: 20px 12px;
     background-attachment: scroll;
   }
 
-  header h1 {
-    font-size: 32px;
-  }
-
-  header p {
-    font-size: 14px;
-  }
-
-  #search-form {
-    gap: 3px;
-    padding: 6px;
-  }
-
-  #city-input {
-    padding: 12px 7px;
-    font-size: 14px;
-  }
-
-  #search-button {
-    padding: 12px;
-    font-size: 13px;
-  }
-
   .current {
-    padding: 16px 11px;
+    padding: 18px 12px;
   }
 
   .place h2 {
-    font-size: 21px;
-  }
-
-  #date {
-    font-size: 11px;
+    font-size: 22px;
   }
 
   .hero {
@@ -273,50 +189,33 @@ footer a {
   }
 
   #icon {
-    font-size: 62px;
-  }
-
-  #temperature {
-    font-size: 48px;
-  }
-
-  #description {
-    font-size: 16px;
+    font-size: 58px;
   }
 
   .details {
-    gap: 6px;
+    gap: 7px;
   }
 
   .detail {
-    padding: 12px 3px;
-  }
-
-  .detail span {
-    font-size: 23px;
-  }
-
-  .detail p {
-    font-size: 11px;
-  }
-
-  .detail h3 {
-    font-size: 16px;
+    padding: 14px 3px;
+    font-size: 13px;
   }
 
   .forecast {
-    gap: 5px;
+    gap: 6px;
   }
 
-  .forecast > div {
-    padding: 10px 2px;
+  .forecast .card {
+    padding: 14px 2px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
   }
 
-  .forecast p {
-    font-size: 10px;
-  }
-
-  .forecast span {
+  .forecast-title {
     font-size: 22px;
+  }
+
+  #search-button {
+    padding: 13px 15px;
   }
 }
