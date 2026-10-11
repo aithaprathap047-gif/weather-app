@@ -1,18 +1,88 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Weather App</title>
-  <link rel="stylesheet" href="Styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-  <div class="card">
-    <h1>🌦️ Weather App</h1>
-    <input id="city" placeholder="Enter city name">
-    <button onclick="getWeather()">Search</button>
-    <div id="result">Enter a city to check weather</div>
-  </div>
-<script src="Script.js"></script>
-  
+    <main class="app">
+        <header class="header">
+            <div>
+                <h1>Weather App</h1>
+                <p>Know your weather, plan your day.</p>
+            </div>
+            <span class="logo">🌤️</span>
+        </header>
+
+        <form id="searchForm" class="search-form">
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name..."
+                aria-label="City name"
+                required
+            >
+            <button type="submit">Search</button>
+        </form>
+
+        <p id="message" role="status" aria-live="polite">
+            Search for a city to see its weather.
+        </p>
+
+        <section id="weatherPanel" hidden>
+            <div class="current-card">
+                <div class="current-top">
+                    <div>
+                        <p id="todayLabel">Current Weather</p>
+                        <h2 id="cityName">City</h2>
+                        <p id="weatherDescription">Weather condition</p>
+                    </div>
+                    <div id="weatherIcon" class="weather-icon">🌤️</div>
+                </div>
+
+                <div class="temperature">
+                    <span id="temperature">--</span><span>°C</span>
+                </div>
+
+                <p class="feels">
+                    Feels like <strong id="feelsLike">--</strong>°C
+                </p>
+
+                <div class="details">
+                    <div class="detail">
+                        <span>💧 Humidity</span>
+                        <strong id="humidity">--%</strong>
+                    </div>
+                    <div class="detail">
+                        <span>💨 Wind Speed</span>
+                        <strong id="wind">-- km/h</strong>
+                    </div>
+                    <div class="detail">
+                        <span>🌡️ Min / Max</span>
+                        <strong id="minMax">-- / --°C</strong>
+                    </div>
+                </div>
+            </div>
+
+            <section class="forecast-section">
+                <h2>5-Day Forecast</h2>
+                <div id="forecast" class="forecast-grid"></div>
+            </section>
+
+            <section class="recent-section">
+                <h2>Recent Searches</h2>
+                <div id="recentCities" class="recent-cities"></div>
+            </section>
+        </section>
+
+        <footer>
+            <p>Weather information powered by Open-Meteo</p>
+        </footer>
+    </main>
+
+    <script src="Script.js"></script>
 </body>
 </html>
