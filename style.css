@@ -93,8 +93,8 @@ header p {
 
 .current,
 .card {
-  background: rgba(12, 37, 79, .78);
-  border: 1px solid rgba(151, 190, 255, .48);
+  background: rgba(12, 37, 79, .58);
+  border: 1px solid rgba(151, 190, 255, .58);
   border-radius: 22px;
   backdrop-filter: blur(14px);
 }
