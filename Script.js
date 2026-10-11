@@ -1,42 +1,89 @@
 
 const form = document.getElementById("form");
+const cityInput = document.getElementById("city");
 const statusText = document.getElementById("status");
 
-form.addEventListener("submit", async e => {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const city = document.getElementById("city").value.trim();
+
+  const city = cityInput.value.trim();
+  if (!city) return;
+
   statusText.textContent = "Loading weather...";
 
   try {
-    const url = "https://geocoding-api.open-meteo.com/v1/search?name="
-      + encodeURIComponent(city) + "&count=1";
-    const geo = await (await fetch(url)).json();
-    if (!geo.results?.length) throw Error("City not found!");
+    const geoResponse = await fetch(
+      "https://geocoding-api.open-meteo.com/v1/search?name=" +
+      encodeURIComponent(city) + "&count=1&language=en&format=json"
+    );
 
-    const place = geo.results[0];
-    const api = "https://api.open-meteo.com/v1/forecast?latitude="
-      + place.latitude + "&longitude=" + place.longitude
-      + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m";
+    if (!geoResponse.ok) throw new Error("Network error");
 
-    const data = await (await fetch(api)).json();
-    const w = data.current;
-    const codes = {
-      0:["☀️","Clear sky"],1:["🌤️","Mostly clear"],
-      2:["⛅","Partly cloudy"],3:["☁️","Cloudy"],
-      45:["🌫️","Foggy"],61:["🌧️","Rainy"],
-      63:["🌧️","Rainy"],65:["⛈️","Heavy rain"],
-      95:["⛈️","Thunderstorm"]
+    const geoData = await geoResponse.json();
+
+    if (!geoData.results || geoData.results.length === 0) {
+      throw new Error("City not found. Try another city.");
+    }
+
+    const place = geoData.results[0];
+
+    const url =
+      "https://api.open-meteo.com/v1/forecast?latitude=" +
+      place.latitude +
+      "&longitude=" +
+      place.longitude +
+      "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m";
+
+    const weatherResponse = await fetch(url);
+    if (!weatherResponse.ok) throw new Error("Weather unavailable");
+
+    const weatherData = await weatherResponse.json();
+    const weather = weatherData.current;
+
+    const conditions = {
+      0: ["Clear sky", "☀️"],
+      1: ["Mainly clear", "🌤️"],
+      2: ["Partly cloudy", "⛅"],
+      3: ["Overcast", "☁️"],
+      45: ["Foggy", "🌫️"],
+      48: ["Foggy", "🌫️"],
+      51: ["Light drizzle", "🌦️"],
+      53: ["Drizzle", "🌦️"],
+      55: ["Heavy drizzle", "🌧️"],
+      61: ["Light rain", "🌦️"],
+      63: ["Rain", "🌧️"],
+      65: ["Heavy rain", "🌧️"],
+      71: ["Light snow", "🌨️"],
+      73: ["Snow", "❄️"],
+      75: ["Heavy snow", "❄️"],
+      80: ["Rain showers", "🌦️"],
+      81: ["Rain showers", "🌧️"],
+      82: ["Heavy showers", "⛈️"],
+      95: ["Thunderstorm", "⛈️"]
     };
-    const info = codes[w.weather_code] || ["🌦️","Variable weather"];
 
-    document.getElementById("name").textContent = place.name;
-    document.getElementById("temp").textContent = Math.round(w.temperature_2m);
-    document.getElementById("icon").textContent = info[0];
-    document.getElementById("desc").textContent = info[1];
-    document.getElementById("humidity").textContent = w.relative_humidity_2m + "%";
-    document.getElementById("wind").textContent = w.wind_speed_10m + " km/h";
-    statusText.textContent = "Feels like " + w.apparent_temperature + "°C";
-  } catch (err) {
-    statusText.textContent = err.message || "Network error. Try again.";
+    const condition = conditions[weather.weather_code] ||
+      ["Current conditions", "🌡️"];
+
+    document.getElementById("name").textContent =
+      place.name + (place.country ? ", " + place.country : "");
+
+    document.getElementById("temp").textContent =
+      Math.round(weather.temperature_2m);
+
+    document.getElementById("icon").textContent = condition[1];
+    document.getElementById("desc").textContent = condition[0];
+
+    document.getElementById("humidity").textContent =
+      weather.relative_humidity_2m + "%";
+
+    document.getElementById("wind").textContent =
+      weather.wind_speed_10m + " km/h";
+
+    statusText.textContent = "Weather updated successfully!";
+
+  } catch (error) {
+    statusText.textContent = error.message ||
+      "Something went wrong. Please try again.";
   }
 });
